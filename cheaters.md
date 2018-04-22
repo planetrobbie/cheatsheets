@@ -5,14 +5,18 @@
 }
 %%%END
 
+# Cheaters
+
 #### General
+
 Action | Function
 -- | --
-f {First letters}| Fast Switcher by name
-f {1..9}| Fast Switcher by number
+f {First letters} | Fast Switcher by name
+f {1..9} | Fast Switcher by number
 Command-I | Change Contrast
 
-#### Moving 
+#### Navigate
+
 Action | Function
 -- | --
 xCMDxSHIFTH | Home
@@ -30,20 +34,21 @@ l | Next Cheatsheet
 
 Action | Function
 -- | --
-f? {query}| DuckDuckGo
-f?g {query}| Google
-?gh {query}| GitHub
-?so {query}| Stack Overflow
+f? {query} | DuckDuckGo
+f?g {query} | Google
+?gh {query} | GitHub
+?so {query} | Stack Overflow
 
 #### Markdown
+
 Type (without space) | For
 -- | --
-x CMD | Command
-x SHIFT | Shift
-x CTRL | Control
-x OPT | Option
+x CMD | xCMD
+x SHIFT | xSHIFT
+x CTRL | xCTRL
+x OPT | xOPT
 
-Put Markdown in `~/in/code/cheaters-master/cheaters/cheatsheets`
+Put Markdown cheatsheets in `~/in/code/cheaters-master/cheaters/cheatsheets`
 
 ---
 
