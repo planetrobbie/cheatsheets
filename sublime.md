@@ -42,8 +42,9 @@ Block Comment Current Selection | ⌘ + ⌥ + / | Ctrl + ⇧ + /
 Redo/Repeat Last Keyboard Shortcut | ⌘ + Y | Ctrl + Y
 Paste with Proper Indenting | ⌘ + ⇧ + V | Ctrl + ⇧ + V
 Select Next Autocomplete Suggestion | ⌃ + Space | Ctrl + Space
-Soft Undo | ⌃ + U | Ctrl + U
-
+Soft Undo Movement| ⌃ + U | Ctrl + U |
+Redo Movement (Soft Redo)| ⌘ + Shift + U | 
+   
 #### Transform
 
 command | mac | linux/win
@@ -68,14 +69,16 @@ Use Selection for Replace | ⇧ + ⌘ + E | ⇧ + Ctrl + E
 command | mac | linux/win
 -- | -- | --
 Quick Open File (by Name) | ⌘ + P | Ctrl + P
+Go To File | ⌘ + T ||
+Go To Project | ⌃  + ⌘ + P||
 Go To Symbol | ⌘ + R | Ctrl + R
 Go To Line | ⌃ + G | Ctrl + G
 Go To Start Of File | ⌘ + Up | Ctrl + Up
 Go To End Of File | ⌘ + Down | Ctrl + Down
 Jump to tab 1-9 | ⌘ + [NUM] | Alt + [NUM]
 Cycle up through recent tabs | ^ + Tab |
-Cycle right through tabs | ⌘ + ⇧ + ] | Ctrl + PgUp
-Cycle left through tabs | ⌘ + ⇧ + [ | Ctrl + PgDn
+Cycle right through tabs | xOPT + ⌘ + right ] | Ctrl + PgUp
+Cycle left through tabs | xOPT + ⌘ + left [ | Ctrl + PgDn
 Open last closed tab | ⌘ + ⇧ + t | Ctrl + ⇧ + t
 
 #### Code Folding
@@ -104,8 +107,8 @@ Split view into two columns | ⌘ + ⌥ + 2 | Alt + ⇧ + 2
 Split view into three columns | ⌘ + ⌥ + 3 | Alt + ⇧ + 3
 Split view into four columns | ⌘ + ⌥ + 4 | Alt + ⇧ + 4
 Set view to grid (4 groups) |  ⌘ + ⌥ + 5 | Alt + ⇧ + 5
-Jump to group where num is 1-4 | ⌃ + [NUM] | Ctrl + [NUM]
-Move file to specified group where num is 1-4 | ⌃ + ⇧ + [NUM] | Ctrl + ⇧ + [NUM]
+Jump to group | ⌃ + [1,2,3,4] | Ctrl + [1,2,3,4]
+Move file to specified group | ⌃ + ⇧ + [1,2,3,4] | Ctrl + ⇧ + [1,2,3,4]
 
 #### Language
 
@@ -123,23 +126,59 @@ Create a New Snippet. | Tools &gt; Developer &gt; New Snippet...
 
 On mac, snippets are stored in `~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/`.
 See [documentation](http://docs.sublimetext.info/en/latest/extensibility/snippets.html) for further details.
+df
 
-#### Markdown Lint
 
-command | mac | linux/win
--- | -- | --
-Linting Markdown | ⌘ + ⇧ + P &gt; MarkdownEditing Lint | Ctrl + ⇧ + P &gt; MarkdownEditing Lint
+#### MarkdownEditing
 
-Require `SublimeLinter` and `MardownEditing` packages.
+command | mac
+-- | --
+Indent List Item | ⇥
+UnIndent List Item | ⇧ ⇥
+Bold | ⌘ ⌥ B
+Italic | ⌘ ⌥ I
+New Inline Image | ⇧ ⌘ K
+New Reference | ⌥ ⌘ R
+New Inline Link | ⌥ ⌘ V
+New Footnote | ⌥ ⇧ 6
+Jump Reference | ⌃ ⇧ ⌘ L
+Fold/Unfold current section | ⇧ Tab
+Show Fold All Sections | ⌃ ⇧ ⇥
+MarkdownEditing: Organize References | ⌃ ⌘ S
+Linting Markdown | ⌘ + ⇧ + P &gt; MarkdownEditing Lint
+Change Color | ⌘ + ⇧ + P &gt; Change color scheme… 
+Preview | ⌥ + m or Tools &gt; Open with Typora
+
+Linting Require `SublimeLinter` and `MardownEditing` packages.
+Preview Require `MarkdownLivePreview`
+
+####  Mediawiker
+
+command | mac
+-- | --
+Mediawiker Post Page | ⌃ S
+Mediawiker Edit Panel | ⌥ F1
+Mediawiker Show Toc | ⌥ F2
+Mediawiker Open Page | ⌥ F3
+Mediawiker Open Page In Browser | ⌥ F5
+Mediawiker Reopen Page | F5
+Mediawiker Set Active Site | ⌥ F6
+Mediawiker Page List | ⌥ F10
+Show Overlay | ⌥ F11
+Insert Snippet | ⌃ ⌥ [2,3,4,5,K]
+Insert Snippet | ⌃ [B, I]
 
 #### Interesting Packages
 
 - [SublimeLinter](https://packagecontrol.io/search/Markdown%20lint) - npm required
 - [Markdown​Editing](https://packagecontrol.io/packages/MarkdownEditing) - eye candy theme !
+- [MarkdownLivePreview](https://packagecontrol.io/packages/MarkdownLivePreview)
+- [Typora Markdown App (OSX)](https://github.com/Asoul/typora-markdown-sublime)
 - [GoSublime](https://packagecontrol.io/packages/GoSublime)
 - [Mediawikier](https://packagecontrol.io/packages/Mediawiker)
 - [RegReplace](https://packagecontrol.io/packages/RegReplace)
 ---
 
-Cheatsheet freely available on [GitHub](source available on [GitHub](https://github.com/planetrobbie/cheatsheets/sublime.md), adapter to [Cheaters](http://brettterpstra.com/projects/cheaters) by planetrobbie from [Chris Simpkins](http://sweetme.at/2013/08/08/sublime-text-keyboard-shortcuts/) version.
-**Sublime Text** is available at [https://www.sublimetext.com/](https://www.sublimetext.com/)
+Cheatsheet freely available on [GitHub](source available on [GitHub](https://github.com/planetrobbie/cheatsheets/sublime.md), ported to [Cheaters](http://brettterpstra.com/projects/cheaters) by planetrobbie from [Chris Simpkins](http://sweetme.at/2013/08/08/sublime-text-keyboard-shortcuts/) version and [documentation](http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_osx.html).
+**Sublime Text** is available at [https://www.sublimetext.com/](https://www.sublimetext.com)
+
