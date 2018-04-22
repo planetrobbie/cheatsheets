@@ -6,9 +6,10 @@
 %%%END
 
 # Pet
+
 Simple command-line snippet manager, written in Go.
 
-### Commands
+#### Commands
 
 cli | description
 -- | -- | --
@@ -20,7 +21,7 @@ pet exec | Execute a command
 pet sync | Sync up to the configured Gist
 pet configure | Configure
 
-### Tips & Tricks
+#### Tips & Tricks
 
 Variables can be used in commands between &lt; and &gt; like this
 
@@ -34,7 +35,7 @@ Add this function to you `.bashrc` or `.zshrc` to easily add previous command as
     }
 
 Add this code to your `.zshrc` to search using `xCTRL-s`
-    
+
     function pet-select() {
       BUFFER=$(pet search --query "$LBUFFER")
       CURSOR=$#BUFFER
@@ -61,7 +62,7 @@ Get an access token from [GitHub](https://github.com/settings/tokens/new) and se
       public = false
       auto_sync = false
 
-If you set `auto_sync` to true, Pet will be automatically sync'ed after addition.
+If you set `auto_sync` to true, Pet will be automatically sync'ed after addition
 
 ---
 

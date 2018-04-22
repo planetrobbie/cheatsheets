@@ -48,7 +48,7 @@ x SHIFT | xSHIFT
 x CTRL | xCTRL
 x OPT | xOPT
 
-Put Markdown cheatsheets in `~/in/code/cheaters-master/cheaters/cheatsheets`
+Put Markdown cheatsheets in `cheaters/cheatsheets` they will be converted on the fly.
 
 ---
 
