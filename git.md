@@ -77,5 +77,4 @@ git log --stat | show diffstat of changes introduced at each commit | summary of
 
 --- 
 
-Created by Planetrobbie
-source available on [GitHub](https://github.com/planetrobbie/cheatsheets/git.md)
+Cheatsheet freely available on [GitHub](https://github.com/planetrobbie/cheatsheets/git.md), created by planetrobbie.
