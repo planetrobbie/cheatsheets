@@ -45,7 +45,7 @@ Add this code to your `.zshrc` to search using `xCTRL-s`
     stty -ixon
     bindkey '^s' pet-select
 
-By using `pbcopy` on OS X, you can copy snippets to clipboard to run a command remotely using a SSH connection.
+By using `pbcopy` on OS X, you can copy snippets to clipboard to run a command remotely using a SSH connection, you'll be able to paste the command from the clipboard.
 
     pet search | pbcopy
 
