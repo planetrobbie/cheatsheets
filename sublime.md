@@ -175,7 +175,7 @@ Insert Snippet | ⌃ [B, I]
 - [MarkdownLivePreview](https://packagecontrol.io/packages/MarkdownLivePreview)
 - [Typora Markdown App (OSX)](https://github.com/Asoul/typora-markdown-sublime)
 - [GoSublime](https://packagecontrol.io/packages/GoSublime)
-- [Mediawikier](https://packagecontrol.io/packages/Mediawiker)
+- [Mediawiker](https://packagecontrol.io/packages/Mediawiker)
 - [RegReplace](https://packagecontrol.io/packages/RegReplace)
 ---
 
