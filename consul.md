@@ -7,6 +7,17 @@
 
 # HashiCorp Consul
 
+#### Help
+
+#### Read
+
+#### Read/Write Key/Values
+
+CLI | Description
+-- | --
+consul kv get -recurse redis/ | Treat the path as a prefix and list all keys which start with the given prefix
+consul kv get -keys |  List keys which start with the given prefix
+
 #### Clustering
 
 CLI | Description
@@ -51,8 +62,16 @@ If everything looks good you can safely move consul binary to your PATH
     unzip consul_&lt;VERSION&gt;_darwin_amd64.zip
     mv consul /to/your/path
 
+Complete the installation by activating the autocomplete feature
+
+    consul -autocomplete-install
+
 #### Consul Devt Agent
 
 To start a development agent, in this mode you'll have a single node environment quickly and easily. But it is just for learning and testing, for sure not for production.
 
-    consul agent -dev
+    consul agent -dev -ui
+
+You can access Consul Web UI
+
+    http://localhost:8500/ui

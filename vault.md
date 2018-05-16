@@ -11,10 +11,28 @@
 
 CLI | Description
 :-- | :-- | :--
-vault -h | General help
+vault -h | General Help
 vault CMD -h | Help on a subcommand
-vault path-help PATH | Help on a `PATH`
-vault auth help github | Help on auth method
+vault path-help PATH | Help on a PATH
+vault auth help METHOD | Help on auth method
+
+#### Operations
+
+CLI | Description
+:-- | :-- | :--
+vault operator init | Initializes a server
+vault operator unseal | Unseals the Vault server
+vault operator seal | Seals the Vault server
+vault status | Output current state
+
+#### Secrets Engines
+
+CLI | Description
+-- | --
+vault secrets list | List existing secrets engines
+vault secrets enable [-path=PATH] SECRET_ENGINE | Enable a secret engine at the provided path, or by default it will be accessible with its name
+vault write PATH key=value key=value  | Write a secret to a specific PATH which is backed by the declared secret engine.
+vault read PATH | Read from a secret engine at PATH
 
 #### Read/Write Secrets
 
@@ -27,48 +45,53 @@ vault kv put secret/password value=@data.txt| Write from a File
 vault kv get secret/password | Read
 vault kv get -version=1 -format=yaml secret/password | Output in yaml of version 1
 
-#### Secrets Engines
-
-CLI | Description
--- | --
-vault secrets list | List existing secrets engines
-vault secrets enable -path=PATH ENGINE | Enable a secret engine at the provided path, or by default it will be accessible with its name
-vault write PATH/... key=value key=value  | Write a secret to a specific PATH which is backed by the declared secret engine.
-
 #### Authentication
 
 ##### Tokens
+
+CLI | Description
+-- | --
+vault token create | Create a token which is a child of the current one.
+vault token renew TOKEN | Renew lease
+vault token revoke -mode path auth/METHOD | revoke any logins from method
+vault token revoke TOKEN | Revoke a token, will also revoke all of its child.
+vault login -method=userpass DATA | Login to Vault using the specified method.
 
 ##### Auth
 
 CLI | Description
 -- | --
 vault auth list | list auth methods
-vault token revoke -mode path auth/METHOD | revoke any logins from method
+vault auth [-path=PATH] enable METHOD | Enable auth method
 vault auth disable METHOD | Disable auth method
 
+#### Auth methods
 
-CLI | Description
--- | --
-vault token create | Create a token which is a child of the current one.
-vault login TOKEN | Login using a token
-vault token revoke TOKEN | Revoke a token, will also revoke all of its child.
-vault token renew TOKEN | Renew lease
+Method (api/cli name) | Authenticate using
+:-- | :-- | :--
+[approle](https://www.vaultproject.io/docs/auth/approle.html) | role_id, secret_id
+[aws](https://www.vaultproject.io/docs/auth/aws.html) | [AWS IAM credentials](https://www.hashicorp.com/resources/deep-dive-vault-aws-auth-backend), mapping an IAM user or role to a Vault role.
+[gcp](https://www.vaultproject.io/docs/auth/gcp.html) | Google credentials
+[kubernetes](https://www.vaultproject.io/docs/auth/kubernetes.html) | a Kubernetes Service Account Token. Makes it easy to introduce a Vault token into a Kubernetes Pod.
+[github](https://www.vaultproject.io/docs/auth/github.html) | a GitHub personal access token
+[ldap](https://www.vaultproject.io/docs/auth/ldap.html) | an existing LDAP server and user/password credentials. Groups and Users can be mapped to Vault policies.
+[okta](https://www.vaultproject.io/docs/auth/okta.html) | Okta and user/password credentials. Groups mapped to Vault policies.
+[radius](https://www.vaultproject.io/docs/auth/radius.html) | an existing RADIUS server that accepts the PAP authentication scheme.
+[cert](https://www.vaultproject.io/docs/auth/cert.html) | SSL/TLS client certificates which are either signed by a CA or self-signed.
+[token](https://www.vaultproject.io/docs/auth/token.html) | a token. Built-in method.
+[userpass](https://www.vaultproject.io/docs/auth/userpass.html) | a username and password
 
 ##### GitHub
 
 CLI | Description
 -- | --
-vault auth enable -path=github github | To enable [GitHub](https://www.vaultproject.io/docs/auth/github.html) auth method
-vault write auth/github/config organization=my-company | Configure it
+vault write auth/github/config organization=my-company | Configure GitHub auth
 GitHub &gt; Setting &gt; Developper settings &gt; Personal access tokens > Generate new token| Create you own [personnal access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), at least allow read:org
 vault login -method=github token=2046...e9307d | login
-vault token revoke -mode path auth/github | revoke GitHub auth
-vault auth disable github | disable it
 
 #### Authz, Policies
 
-Apart from pre-existing root and default policies, you can create new ones using HashiCorp Configuration Language.
+Apart from pre-existing root and default policies, you can create new policies using HashiCorp Configuration Language.
 
 CLI | Description
 -- | --
@@ -78,6 +101,16 @@ vault policy write my-policy acl.hcl | write a policy
 vault policy read my-policy | view policy content
 vault token create -policy=my-policy | assign policy to a token at creation time
 vault write auth/github/map/teams/default value=my-policy | map policy to GitHub apply to everybody.
+
+#### Audit Devices
+
+Audit Devices gives you a pluggable way to keep a detailed log of all requests and response to Vault. You'll find the full request and response for every interaction, but secrets will be hashed using HMAC-SHA256
+
+CLI | Description
+-- | --
+vault audit enable file file_path=/var/log/vault_audit.log | enable [file](https://www.vaultproject.io/docs/audit/file.html) Audit Device
+vault audit enable syslog tag="vault" facility="AUTH" | enable [Syslog](https://www.vaultproject.io/docs/audit/syslog.html) Audit Device
+vault audit enable socket address=127.0.0.1:9090 socket_type=tcp | enable [Socket](https://www.vaultproject.io/docs/audit/socket.html) Audit Device
 
 #### Environment Variables, CLI Options
 
@@ -98,6 +131,28 @@ VAULT_TLS_SERVER_NAME | Name to use as the server name (SNI) host when connectin
 VAULT_CLI_NO_COLOR | supress ANSI color escape sequence characters from Vault output |
 VAULT_WRAP_TTL | Wraps the response in a cubbyhole token with the requested TTL. The response is available via the "vault unwrap" command. |
 VAULT_MFA | mfa_method_name[:key[=value]] for Multi-factor authentication, enterprise only ! | -mfa=...
+
+#### Storage Backends
+
+Backend | Highly Available? | Support
+:-- | :-- | :--
+[Azure](https://www.vaultproject.io/docs/configuration/storage/azure.html) | No | Commumity
+[CockroachDB](https://www.vaultproject.io/docs/configuration/storage/cockroachdb.html) | No | Community
+[Consul](https://www.vaultproject.io/docs/configuration/storage/consul.html) | Yes | HashiCorp
+[CouchDB](https://www.vaultproject.io/docs/configuration/storage/couchdb.html) | No | Community
+[DynamoDB](https://www.vaultproject.io/docs/configuration/storage/dynamodb.html) | Yes | Community
+[Etcd](https://www.vaultproject.io/docs/configuration/storage/etcd.html) | Yes | Community
+[Filesystem](https://www.vaultproject.io/docs/configuration/storage/filesystem.html) | No | HashiCorp
+[Google Cloud Storage](https://www.vaultproject.io/docs/configuration/storage/google-cloud-storage.html) | Yes | Community
+[Google Cloud Spanner](https://www.vaultproject.io/docs/configuration/storage/google-cloud-spanner.html) | Yes | Community
+[In-Memory](https://www.vaultproject.io/docs/configuration/storage/in-memory.html) | No | HashiCorp, good for testing
+[Manta](https://www.vaultproject.io/docs/configuration/storage/manta.html) | No | Community
+[MySQL](https://www.vaultproject.io/docs/configuration/storage/mysql.html) | No | Community
+[PostgreSQL](https://www.vaultproject.io/docs/configuration/storage/postgresql.html) | No | Community
+[Cassandra](https://www.vaultproject.io/docs/configuration/storage/cassandra.html) | No | Community
+[S3](https://www.vaultproject.io/docs/configuration/storage/s3.html) | No | Community
+[Swift](https://www.vaultproject.io/docs/configuration/storage/swift.html) | No | Community
+[Zookeeper](https://www.vaultproject.io/docs/configuration/storage/zookeeper.html) | Yes | Community
 
 #### Installation
 
