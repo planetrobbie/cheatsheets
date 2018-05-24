@@ -102,9 +102,11 @@ vault policy read my-policy | view policy content
 vault token create -policy=my-policy | assign policy to a token at creation time
 vault write auth/github/map/teams/default value=my-policy | map policy to GitHub apply to everybody.
 
+Capabilities: create, read, update, delete, list, sudo, deny
+
 #### Audit Devices
 
-Audit Devices gives you a pluggable way to keep a detailed log of all requests and response to Vault. You'll find the full request and response for every interaction, but secrets will be hashed using HMAC-SHA256
+Audit Devices](https://www.vaultproject.io/docs/audit/index.html) gives you a pluggable way to keep a detailed log of all requests and response to Vault. You'll find the full request and response for every interaction, but secrets will be hashed using HMAC-SHA256
 
 CLI | Description
 -- | --
@@ -153,6 +155,19 @@ Backend | Highly Available? | Support
 [S3](https://www.vaultproject.io/docs/configuration/storage/s3.html) | No | Community
 [Swift](https://www.vaultproject.io/docs/configuration/storage/swift.html) | No | Community
 [Zookeeper](https://www.vaultproject.io/docs/configuration/storage/zookeeper.html) | Yes | Community
+
+#### Versions
+
+Open Source | Pro | Premium
+:-- | :-- | :--
+[Secure storage](https://www.vaultproject.io/docs/secrets/index.html) | Disaster Recovery Replication | [HSM Autounseal](https://www.vaultproject.io/docs/enterprise/hsm/index.html)
+[Key Rolling](https://www.vaultproject.io/docs/internals/rotation.html) | [UI with cluster management](https://www.vaultproject.io/docs/enterprise/ui/index.html) | [Performance Replication](https://www.vaultproject.io/docs/enterprise/replication/index.html)
+[Credential leasing & revocation](https://www.vaultproject.io/docs/concepts/lease.html) | Init and unseal workflow | Mount Filters
+[Detailed Audit Logs](https://www.vaultproject.io/docs/audit/index.html) | AWS KMS Auto-unseal | [Multi-Factor Authentication](https://www.vaultproject.io/docs/enterprise/mfa/index.html)
+[Secure Plugins](https://www.vaultproject.io/docs/internals/plugins.html) | GCP Cloud KMS Auto-unseal | [Sentinel Integration](https://www.hashicorp.com/sentinel)
+[Access control policies](https://www.vaultproject.io/docs/concepts/policies.html) | Silver support: 9x5 support w/ SLA | Gold support: 24x7 support w/ SLA
+[Encryption as a service](https://www.vaultproject.io/docs/secrets/transit/index.html) | | [Seal Wrap / FIPS 140-2 Compliance](https://www.hashicorp.com/vault-compliance)
+Identities (Entities + Groups) | | Control Groups
 
 #### Installation
 
@@ -221,14 +236,18 @@ If your server configuration is in `config.hcl`, you can start your server like 
 
 ##### Example configuration
 
+    ui = true
+    
+    listener "tcp" {
+     address     = "0.0.0.0:8200"
+     tls_cert_file = "/etc/letsencrypt/live/DOMAIN/fullchain.pem"
+     tls_key_file = "/etc/letsencrypt/live/DOMAIN/privkey.pem"
+     tls_client_ca_file = "/etc/vault/letsencryptauthorityx3.pem"
+    }
+
     storage "consul" {
       address = "127.0.0.1:8500"
       path    = "vault/"
-    }
-    
-    listener "tcp" {
-     address     = "127.0.0.1:8200"
-     tls_disable = 1
     }
 
 ##### Initialization
