@@ -80,6 +80,14 @@ Runtime configuration (Consul Template) | [Network segments](https://www.consul.
 Runtime orchestration | Silver Support: 9x5 support w/ SLA |
 Built-in web UI for editing K/V and viewing health check status |
 
+#### Telemetry
+
+Send USR1 signal to consul process to dump stats to `stderr`
+
+    pkill -USR1 consul
+
+Can also be streamed, see [configuration](https://www.consul.io/docs/agent/options.html#telemetry)
+
 #### Installation
 
 Install GnuPG on your platform
