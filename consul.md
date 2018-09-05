@@ -133,6 +133,14 @@ Check installation
 
     consul version
 
+For Consul Enterprise now set the license
+
+    consul license put "<contents_of_consul_license>"
+
+Check it has been correcly installed
+
+    consul license get
+
 Complete the installation by activating the autocomplete feature
 
     consul -autocomplete-install
@@ -150,6 +158,10 @@ To start a development agent, in this mode you'll have a single node environment
 You can access Consul Web UI
 
     http://localhost:8500/ui
+
+You can interact using the CLI by setting up the following ENV variable
+
+    export CONSUL_HTTP_ADDR=http://localhost:8500
 
 #### Raft
 

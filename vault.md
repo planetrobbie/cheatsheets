@@ -89,7 +89,7 @@ vault write auth/github/config organization=my-company | Configure GitHub auth
 GitHub &gt; Setting &gt; Developper settings &gt; Personal access tokens > Generate new token| Create you own [personnal access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/), at least allow read:org
 vault login -method=github token=2046...e9307d | login
 
-#### Authz, Policies
+#### [Policies](https://www.vaultproject.io/guides/identity/policies.html)
 
 Apart from pre-existing root and default policies, you can create new policies using HashiCorp Configuration Language.
 
@@ -167,7 +167,20 @@ Open Source | Pro | Premium
 [Secure Plugins](https://www.vaultproject.io/docs/internals/plugins.html) | GCP Cloud KMS Auto-unseal | [Sentinel Integration](https://www.hashicorp.com/sentinel)
 [Access control policies](https://www.vaultproject.io/docs/concepts/policies.html) | Silver support: 9x5 support w/ SLA | Gold support: 24x7 support w/ SLA
 [Encryption as a service](https://www.vaultproject.io/docs/secrets/transit/index.html) | | [Seal Wrap / FIPS 140-2 Compliance](https://www.hashicorp.com/vault-compliance)
-Identities (Entities + Groups) | | Control Groups
+Identities (Entities + Groups) | | [Control Groups](http://www.vaultproject.com/docs/enterprise/control-groups/index.html)
+
+#### Namespaces
+
+[Multitenancy](https://www.vaultproject.io/guides/operations/multi-tenant.html) within vault, isolate: Secret Engines, Auth Methods, Identities (Entities and Identity Groups), Policies, Tokens, 
+
+CLI | Description
+:-- | :--
+vault namespace create education | create a namespace
+vault namespace create -namespace=education training | create a child namespace
+vault namespace list | list namespaces
+vault namespace list -namespace=education | list child namespaces
+export VAULT_NAMESPACE=education | target a namespace
+unset VAULT_NAMESPACE | leave namespace
 
 #### Installation
 
@@ -215,7 +228,7 @@ Complete the installation by activating the autocomplete feature
 To start a development server, in this mode Vault runs entirely in-memory
 and starts unsealed with a single unseal key. So it is just for learning and testing.
 
-    vault server -dev
+    VAULT_UI=true vault server -dev -dev-root-token-id="root"
 
 In a new terminal, export Vault server address
 
@@ -269,6 +282,15 @@ Repeat this process three time, if keys are correct you should see `Sealed  fals
 In case of an emergency you can reseal it
 
     vault operator seal
+
+License for Vault Enterprise can be set using
+
+    vault write sys/license text="LICENSE_KEY"
+
+Check license
+
+    vault read sys/license
+
 --- 
 
 Cheatsheet freely available on [GitHub](https://github.com/planetrobbie/cheatsheets/vault.md), created by planetrobbie.
