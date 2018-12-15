@@ -171,7 +171,7 @@ Identities (Entities + Groups) | | [Control Groups](http://www.vaultproject.com/
 
 #### Namespaces
 
-[Multitenancy](https://www.vaultproject.io/guides/operations/multi-tenant.html) within vault, isolate: Secret Engines, Auth Methods, Identities (Entities and Identity Groups), Policies, Tokens, 
+[Multitenancy](https://www.vaultproject.io/guides/operations/multi-tenant.html) within vault, isolate: Secret Engines, Auth Methods, Identities (Entities and Identity Groups), Policies, Tokens.
 
 CLI | Description
 :-- | :--

@@ -66,6 +66,43 @@ git log -Sstring | filter by introduced diff | tell Git to look through the diff
 git log -p | show patch introduced at each commit | `git show [SHA]` do the same with a specific commit SHA
 git log --stat | show diffstat of changes introduced at each commit | summary of the changes, less verbose then `-p`
     
+#### Pull Request [Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
+
+##### Forking
+
+command | description
+-- | --
+click the "Fork" GitHub button | Fork the upstream repository
+git clone git@github.com:USERNAME/FORKED-PROJECT.git | Clone your fork to your local machine
+
+##### Doing Your Work
+command | description
+-- | --
+git checkout master | New branch needs to come from master
+git branch newfeature | Create a Branch with informative name
+git checkout newfeature | Switch to your new branch
+git add . ; git commit -m "msg" | Commit work on the branch
+
+##### Keeping your Fork Up to Date
+command | description
+-- | --
+git remote add upstream https://github.com/UPSTREAM-USER/ORIGINAL-PROJECT.git | Add 'upstream' repo to list of remotes
+git remote -v | Verify the new remote named 'upstream'
+git fetch upstream | Fetch from upstream remote
+git branch -va | View all branches, including those from upstream
+git checkout master | Checkout your master branch
+git merge upstream/master | Merge upstream
+
+##### Submitting a Pull Request
+command | description
+-- | --
+git fetch upstream | Fetch upstream master
+git checkout master | Switch to master
+git merge upstream/master | Merge with your repo's master branch
+git checkout newfeature | Checkout feature branch
+git rebase master | rebase your development branch if new commits upstream
+click the "Pull Request" GitHub button | on your devt branch
+
 #### References
 
 - [Everyday GIT With 20 Commands Or So](https://mirrors.edge.kernel.org/pub/software/scm/git/docs/giteveryday.html)
