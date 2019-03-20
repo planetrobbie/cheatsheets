@@ -127,6 +127,7 @@ VAULT_CLIENT_KEY | Path to an unencrypted, PEM-encoded private key |
 VAULT_CLIENT_TIMEOUT | Timeout variable, default 60s |
 VAULT_CLUSTER_ADDR | Used by other cluster members to connect to this node when in HA mode |
 VAULT_MAX_RETRIES | Max retries when 5xx error received. default 2 |
+VAULT_NAMESPACE | Specify target namespace [Enterprise feature only] |
 VAULT_REDIRECT_ADDR | clients are redirected to this address when in HA mode. |
 VAULT_SKIP_VERIFY | Do not verify Vault certificate, not recommended. | -tls-skip-verify | 
 VAULT_TLS_SERVER_NAME | Name to use as the server name (SNI) host when connecting via TLS. | -tls-server-name=...
